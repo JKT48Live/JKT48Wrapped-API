@@ -10,7 +10,7 @@ moment.tz.setDefault('Asia/Jakarta').locale('id');
 
 const app = express();
 // Whitelist domain yang diperbolehkan mengakses server Anda
-const whitelist = ["https://jkt48live.github.io"];
+const whitelist = ["https://jkt48live.github.io", "http://jkt48wrap-ui.test"];
 // Konfigurasi CORS
 const corsOptions = {
     origin: function (origin, callback) {
