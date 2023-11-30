@@ -5,7 +5,21 @@ import dl from "./dl.js";
 const port = 3000;
  
 const app = express();
-app.use(cors());
+const whitelist = ["https://jkt48live.github.io"];
+// Konfigurasi CORS
+const corsOptions = {
+    origin: function (origin, callback) {
+        // Periksa apakah origin ada dalam whitelist
+        if (whitelist.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error("Akses Ditolak oleh CORS"));
+        }
+    },
+};
+  
+// Gunakan middleware CORS dengan konfigurasi
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 app.use("/wrap", dl);
