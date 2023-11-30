@@ -5,7 +5,7 @@ import dl from "./dl.js";
 const port = 3000;
  
 const app = express();
-const whitelist = ["https://jkt48live.github.io", "http://jkt48wrap-ui.test"];
+const whitelist = ["https://jkt48live.github.io", "http://jkt48wrap-ui.test", "http://192.160.0.141"];
 // Konfigurasi CORS
 const corsOptions = {
     origin: function (origin, callback) {
