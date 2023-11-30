@@ -1,0 +1,23 @@
+{
+  "name": "smd-api",
+  "version": "1.0.0",
+  "description": "SMD API",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "dandyraka",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "1.6.0",
+    "body-parser": "^1.20.2",
+    "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "moment-timezone": "^0.5.43",
+    "randomstring": "^1.3.0"
+  }
+}
