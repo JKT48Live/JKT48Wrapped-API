@@ -3,14 +3,28 @@ import express from "express";
 import axios from 'axios'
 import * as cheerio from 'cheerio';
 import cors from "cors";
-import fs from 'fs';
 import moment from 'moment-timezone';
 import randomString from 'randomstring';
 
 moment.tz.setDefault('Asia/Jakarta').locale('id');
 
 const app = express();
-app.use(cors());
+// Whitelist domain yang diperbolehkan mengakses server Anda
+const whitelist = ["https://jkt48live.github.io"];
+// Konfigurasi CORS
+const corsOptions = {
+    origin: function (origin, callback) {
+        // Periksa apakah origin ada dalam whitelist
+        if (whitelist.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error("Akses Ditolak oleh CORS"));
+        }
+    },
+};
+  
+// Gunakan middleware CORS dengan konfigurasi
+app.use(cors(corsOptions));
 
 const dl = express.Router();
 
