@@ -267,7 +267,7 @@ async function scrapeTheaterTableData(page, cookie) {
     }
 }
 
-async function getAllYears(cookie) {
+/*async function getAllYears(cookie) {
     try {
         const totalPages = await getTheaterTotalPages(cookie);
         const uniqueYears = new Set();
@@ -276,6 +276,28 @@ async function getAllYears(cookie) {
             const tableData = await scrapeTheaterTableData(page, cookie);
             tableData.forEach(row => {
                 const year = parseInt(row[1].split(' ')[2]); // Extract year and convert to integer
+                if (year >= 2022) { // Check if year is 2022 or later
+                    uniqueYears.add(year);
+                }
+            });
+        }
+
+        return Array.from(uniqueYears);
+    } catch (error) {
+        console.error("Error getAllYears:", error);
+        return false;
+    }
+}*/
+
+async function getAllYears(cookie) {
+    try {
+        const totalPages = await getTotalPages(cookie);
+        const uniqueYears = new Set();
+
+        for (let page = 1; page <= totalPages; page++) {
+            const tableData = await scrapeTableData(page, cookie);
+            tableData.forEach(row => {
+                const year = parseInt(row[2].split(' ')[2]); // Extract year and convert to integer
                 if (year >= 2022) { // Check if year is 2022 or later
                     uniqueYears.add(year);
                 }
